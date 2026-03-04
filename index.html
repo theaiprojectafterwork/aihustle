@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI After Work — From Idea to First Sale (Using AI)</title>
+  <meta name="description" content="A calm, beginner-friendly coursebook for building and selling a small digital product using AI — after work. No hype. Real steps, templates, prompts." />
+
+  <!-- Open Graph (nice preview when shared) -->
+  <meta property="og:title" content="AI After Work — From Idea to First Sale (Using AI)" />
+  <meta property="og:description" content="A realistic workflow + templates + prompts to build your first digital product and get first sales — without guru energy." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#F6F7FB;
+      --card:#FFFFFF;
+      --ink:#0F172A;
+      --muted:#475569;
+      --navy:#1F3A8A;
+      --blue:#3B82F6;
+      --border:#E7E7EE;
+      --good:#10B981;
+      --warn:#F59E0B;
+      --max:1040px;
+      --pad:18px;
+      --radius:18px;
+      --shadow: 0 10px 30px rgba(2,6,23,.06);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{ color:inherit; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
+    header{ padding:22px 0 0; }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:-0.02em;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:99px; background:var(--blue);
+      box-shadow: 0 0 0 6px rgba(59,130,246,.15);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(255,255,255,.75);
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+      backdrop-filter: blur(8px);
+    }
+    .hero{
+      padding:28px 0 40px;
+    }
+    .grid{
+      display:grid; gap:18px;
+    }
+    @media (min-width: 920px){
+      .grid2{ grid-template-columns: 1.2fr .8fr; align-items:start; }
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+    h1{
+      font-size: clamp(34px, 4vw, 54px);
+      line-height:1.05;
+      margin:0 0 12px;
+      letter-spacing:-0.04em;
+    }
+    h2{
+      font-size: 22px;
+      margin:0 0 10px;
+      letter-spacing:-0.02em;
+      color:var(--navy);
+    }
+    h3{ margin:0 0 8px; }
+    p{ margin:0 0 12px; color:var(--muted); }
+    ul{ margin:0; padding-left:18px; color:var(--muted); }
+    li{ margin:6px 0; }
+    .btnrow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid transparent;
+      text-decoration:none;
+      font-weight:850;
+      letter-spacing:-0.01em;
+      cursor:pointer;
+      transition: transform .08s ease, box-shadow .12s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      background:var(--ink);
+      color:#fff;
+      box-shadow: 0 10px 22px rgba(2,6,23,.14);
+    }
+    .btn.primary:hover{ box-shadow: 0 14px 28px rgba(2,6,23,.18); }
+    .btn.secondary{
+      background:#fff;
+      color:var(--ink);
+      border-color:var(--border);
+    }
+    .btn.good{
+      background: rgba(16,185,129,.12);
+      color: #065F46;
+      border-color: rgba(16,185,129,.25);
+      font-weight:800;
+    }
+    .price{
+      font-size: 40px;
+      font-weight:950;
+      letter-spacing:-0.03em;
+      margin:6px 0 2px;
+      color:var(--ink);
+    }
+    .fine{ font-size: 13px; color: var(--muted); }
+    .divider{ height:1px; background:var(--border); margin:14px 0; }
+    .section{ padding:26px 0; }
+    .muted{ color:var(--muted); }
+    .kpi{
+      display:grid; gap:12px;
+    }
+    @media (min-width: 920px){
+      .kpi{ grid-template-columns: repeat(3, 1fr); }
+    }
+    .kpi .card{ padding:16px; }
+    .kpi strong{ color:var(--ink); }
+    .badge{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#fff;
+      font-size:12px;
+      color:var(--muted);
+    }
+    details{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background:#fff;
+      padding:12px 14px;
+    }
+    details + details{ margin-top:10px; }
+    summary{ cursor:pointer; font-weight:850; color:var(--ink); }
+    footer{ padding: 28px 0 44px; }
+    .mini{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      color:var(--muted); font-size:13px;
+    }
+    .link{
+      color:var(--navy);
+      text-decoration: none;
+      font-weight:750;
+    }
+    .link:hover{ text-decoration: underline; }
+    .note{
+      background:rgba(245,158,11,.10);
+      border:1px solid rgba(245,158,11,.25);
+      color:#7C4A03;
+      border-radius:14px;
+      padding:12px 12px;
+      font-size:13px;
+      margin-top:12px;
+    }
+    .smallcaps{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:800;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="wrap">
+  <div class="topbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>AI After Work</span>
+      <span class="badge">No hype • Built for 9–5 schedules</span>
+    </div>
+
+    <a class="pill link" href="YOUR_INSTAGRAM_URL" target="_blank" rel="noopener">
+      Instagram ↗
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="grid grid2">
+      <div class="card">
+        <div class="smallcaps">From idea → first sale</div>
+        <h1>Build & sell a small digital product using AI — after work.</h1>
+        <p>
+          I’m a recent grad working a 9–5. I wanted a realistic side project — not “overnight riches,”
+          just something I could build steadily and improve over time.
+        </p>
+        <p>
+          This coursebook is the exact workflow: <strong>pick a simple idea → build with AI → publish a clean sales page → get first sales</strong>.
+        </p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="YOUR_CHECKOUT_LINK_HERE">Get Instant Access — $39</a>
+          <a class="btn secondary" href="#inside">See what’s inside</a>
+          <a class="btn good" href="#trust">Why this isn’t scammy</a>
+        </div>
+
+        <div class="note">
+          <strong>Honest disclaimer:</strong> this is not a promise of income. Results vary by niche, effort, and consistency.
+          The goal is a repeatable process you can build on.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>What you get</h2>
+        <ul>
+          <li><strong>30-page coursebook</strong> (polished, colorful, beginner-friendly)</li>
+          <li>Prompt pack to build faster (outline → draft → polish)</li>
+          <li>Worksheets + checklists (so you’re never guessing)</li>
+          <li>30-day content plan (one post idea per day)</li>
+          <li>Sales page + DM + CTA templates</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <div class="price">$39</div>
+        <div class="fine">One-time payment • instant access</div>
+
+        <div class="btnrow" style="margin-top:14px;">
+          <a class="btn primary" style="flex:1;" href="YOUR_CHECKOUT_LINK_HERE">Buy Now</a>
+        </div>
+
+        <p class="fine" style="margin-top:10px;">
+          Support: <a class="link" href="mailto:YOUR_SUPPORT_EMAIL">YOUR_SUPPORT_EMAIL</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="section kpi">
+      <div class="card">
+        <strong>For beginners</strong>
+        <p class="fine">No complicated tech stacks. Just a clean workflow.</p>
+      </div>
+      <div class="card">
+        <strong>Fits a 9–5</strong>
+        <p class="fine">Designed for 30–90 minutes/day after work.</p>
+      </div>
+      <div class="card">
+        <strong>Trust-first</strong>
+        <p class="fine">Clear deliverables, clear expectations, no hype.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="trust">
+  <div class="wrap">
+    <div class="grid grid2">
+      <div class="card">
+        <h2>Why this doesn’t feel like a money grab</h2>
+        <ul>
+          <li>No earnings guarantees</li>
+          <li>Clear outcome: build a product + publish a funnel + get first sales</li>
+          <li>Real deliverables: prompts, templates, worksheets, examples</li>
+          <li>Build-in-public approach (you show the process)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Who it’s for</h2>
+        <ul>
+          <li>Recent grads (or anyone) with a 9–5 who want a realistic side hustle</li>
+          <li>Beginners who want a simple plan that doesn’t overwhelm them</li>
+          <li>People who want to use AI ethically to move faster</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3 style="margin:0 0 6px;">Who it’s not for</h3>
+        <ul>
+          <li>Anyone expecting instant results</li>
+          <li>People who want a fully automated business overnight</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="inside">
+  <div class="wrap">
+    <div class="card">
+      <h2>What’s inside</h2>
+      <p class="muted">Short, practical sections + templates you can actually use.</p>
+      <ul>
+        <li><strong>Trust & tone:</strong> how to sell without sounding scammy</li>
+        <li><strong>Product creation:</strong> idea → validation → build (with prompts)</li>
+        <li><strong>Funnel setup:</strong> sales page → checkout link → delivery</li>
+        <li><strong>Instagram:</strong> content pillars, scripts, CTAs, 30-day plan</li>
+        <li><strong>Scaling:</strong> how to push toward $2k/month with a weekly loop</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <div class="btnrow">
+        <a class="btn primary" href="YOUR_CHECKOUT_LINK_HERE">Get Instant Access — $39</a>
+        <a class="btn secondary" href="#faq">Questions? See FAQ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="grid grid2">
+      <div class="card">
+        <h2>Mini “how it works”</h2>
+        <ol class="muted" style="margin:0; padding-left:18px;">
+          <li>Buy (secure checkout)</li>
+          <li>Instant delivery of the coursebook + templates</li>
+          <li>Follow the 30-day plan and start posting</li>
+          <li>Improve weekly (offer → page → hooks)</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h2>Simple promise</h2>
+        <p class="muted">
+          This helps you build a <strong>small, real digital product</strong> and learn a process you can repeat.
+          It’s okay if it starts small. That’s the point.
+        </p>
+        <p class="fine">
+          Profit is the goal — but trust is the strategy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="card">
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>How long does it take?</summary>
+        <p class="muted">You can build a Version 1 in a weekend, then improve with 30–90 minutes/day.</p>
+      </details>
+
+      <details>
+        <summary>Do I need AI or business experience?</summary>
+        <p class="muted">No. The course includes prompts, templates, and a simple checklist workflow.</p>
+      </details>
+
+      <details>
+        <summary>Is this guaranteed income?</summary>
+        <p class="muted">No. This is a process and toolkit. Results vary depending on niche, clarity, and consistency.</p>
+      </details>
+
+      <details>
+        <summary>What do I get immediately after buying?</summary>
+        <p class="muted">Instant access to the coursebook and resources. Delivery depends on your checkout platform settings.</p>
+      </details>
+
+      <div class="divider"></div>
+
+      <div class="btnrow">
+        <a class="btn primary" href="YOUR_CHECKOUT_LINK_HERE">Buy Now — $39</a>
+        <a class="btn secondary" href="mailto:YOUR_SUPPORT_EMAIL">Email Support</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="mini">
+      <span>© <span id="year"></span> AI After Work</span>
+      <span>•</span>
+      <span class="fine">Built for 9–5 schedules • Calm marketing • Real deliverables</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
